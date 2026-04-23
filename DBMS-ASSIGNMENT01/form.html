@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRMS | Student Enrollment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="entry-container">
+        <header class="form-header">
+            <h1>Student Portal</h1>
+            <p>University Management System Entry</p>
+        </header>
+
+        <form id="studentForm">
+            <div class="section-box">
+                <label class="section-title">Primary Information</label>
+                <div class="form-grid">
+                    <div class="input-unit">
+                        <label>Full Name</label>
+                        <input type="text" name="student_name" placeholder="Name" required>
+                    </div>
+                    <div class="input-unit">
+                        <label>Roll Number</label>
+                        <input type="text" name="roll_no" placeholder="e.g. 21-BIT-01" required>
+                    </div>
+                </div>
+
+                <div class="input-unit">
+                    <label>Email Address</label>
+                    <input type="email" name="user_email" placeholder="email@university.edu">
+                </div>
+
+                <div class="input-unit">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dob">
+                </div>
+            </div>
+
+            <div class="section-box">
+                <label class="section-title">Academic & Status</label>
+                
+                <div class="input-unit">
+                    <label>Degree Program</label>
+                    <select name="program">
+                        <option value="CS">Computer Science</option>
+                        <option value="SE">Software Engineering</option>
+                        <option value="IT">Information Technology</option>
+                    </select>
+                </div>
+
+                <div class="status-container">
+                    <span class="status-label">Student Status:</span>
+                    <div class="radio-options">
+                        <label class="radio-control">
+                            <input type="radio" name="st_type" value="FullTime" id="ft-radio" onchange="applyRules()" checked> Full-Time
+                        </label>
+                        <label class="radio-control">
+                            <input type="radio" name="st_type" value="PartTime" id="pt-radio" onchange="applyRules()"> Part-Time
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="input-unit">
+                        <label>Hostel No. (Full-Time)</label>
+                        <input type="text" id="hostel-input" name="hostel_id" placeholder="Room/Hall">
+                    </div>
+                    <div class="input-unit">
+                        <label>Work Hours (Part-Time)</label>
+                        <input type="number" id="work-input" name="job_hours" placeholder="hrs/week">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-action">Register Student</button>
+        </form>
+    </div>
+
+    <script>
+        function applyRules() {
+            const ftRadio = document.getElementById('ft-radio');
+            const hostelField = document.getElementById('hostel-input');
+            const workField = document.getElementById('work-input');
+
+            if (ftRadio.checked) {
+                // It is Full-Time
+                workField.disabled = true;
+                workField.value = ""; 
+                hostelField.disabled = false;
+            } else {
+                // It is Part-Time
+                hostelField.disabled = true;
+                hostelField.value = "";
+                workField.disabled = false;
+            }
+        }
+        // Run once when page opens
+        window.onload = applyRules;
+    </script>
+
+</body>
+</html>
